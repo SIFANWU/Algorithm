@@ -7,7 +7,7 @@ Created on Mon Oct 15 13:30:14 2018
 #冒泡排序
 def bubbleSort(mylist):
     length = len(mylist)
-    for i in range(0,length):
+    for i in range(length-1):
         for j in range(length-i-1):
             if mylist[j]>mylist[j+1]:
                 mylist[j],mylist[j+1]=mylist[j+1],mylist[j]
@@ -22,25 +22,27 @@ def selectSort(mylist):
             if mylist[min_index]>mylist[j]:
                 min_index=j
         mylist[i],mylist[min_index]=mylist[min_index],mylist[i]
-    return mylist           
+    return mylist  
+         
 #选择排序(2)
 def selectSort2(mylist):
     length= len(mylist)
-    for i in range (length):
-        for j in range(length-i):
+    for i in range (length-1):
+        for j in range(1,length-i):
             if mylist[i]>mylist[i+j]:
                 mylist[i],mylist[i+j]=mylist[i+j],mylist[i] 
     return mylist
 
 #快排
-def quickSort(array):
-    if len(array)<2:
-        return array
+def quick(A):
+    if len(A)>=2:
+        point = A[0]
+        left = [i for i in A[1:] if i<=point]
+        right = [i for i in A[1:] if i> point]
+        return quick(left) + [point] + quick(right)
     else:
-        pivot = array[0]
-        less = [ i for i  in array[1:] if i<=pivot]
-        big =[j for j in array[1:] if j>pivot]    
-        return quickSort(less)+[pivot]+quickSort(big)
+        return A
+
 
 #直接插入排序(Python 写法更优化)
 def insertSort(mylist):
